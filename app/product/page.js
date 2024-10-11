@@ -16,7 +16,7 @@ export default function Home() {
   };
 
   async function fetchProducts() {
-    const data = await fetch(`${APIBASE}/product`);
+    const data = await fetch(`/api/product`);
     const p = await data.json();
     const p2 = p.map((product) => {
       product.id = product._id;
@@ -26,14 +26,14 @@ export default function Home() {
   }
 
   async function fetchCategory() {
-    const data = await fetch(`${APIBASE}/category`);
+    const data = await fetch(`/api/category`);
     const c = await data.json();
     setCategory(c);
   }
 
   const createProductOrUpdate = async (data) => {
     if (editMode) {
-      const response = await fetch(`${APIBASE}/product`, {
+      const response = await fetch(`/api/product`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +57,7 @@ export default function Home() {
       return;
     }
 
-    const response = await fetch(`${APIBASE}/product`, {
+    const response = await fetch(`/api/product`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export default function Home() {
   const deleteById = (id) => async () => {
     if (!confirm("Are you sure?")) return;
 
-    const response = await fetch(`${APIBASE}/product/${id}`, {
+    const response = await fetch(`/api/product/${id}`, {
       method: "DELETE",
     });
 

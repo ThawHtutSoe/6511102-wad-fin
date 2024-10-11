@@ -11,7 +11,7 @@ export default function Home() {
   const { register, handleSubmit, reset } = useForm();
 
   async function fetchCategory() {
-    const data = await fetch(`${APIBASE}/category`);
+    const data = await fetch(`/api/category`);
     const c = await data.json();
     const c2 = c.map((category) => {
       category.id = category._id;
@@ -28,7 +28,7 @@ export default function Home() {
   const deleteById = (id) => async () => {
     if (!confirm("Are you sure?")) return;
 
-    await fetch(`${APIBASE}/category/${id}`, {
+    await fetch(`/api/category/${id}`, {
       method: "DELETE",
     });
     fetchCategory();
@@ -42,7 +42,7 @@ export default function Home() {
   function handleCategoryFormSubmit(data) {
     if (editMode) {
       // data.id = data._id
-      fetch(`${APIBASE}/category`, {
+      fetch(`/api/category`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function Home() {
       return
     }
 
-    fetch(`${APIBASE}/category`, {
+    fetch(`/api/category`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

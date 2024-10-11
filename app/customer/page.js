@@ -32,7 +32,7 @@ export default function CustomerManagement() {
   const [showModal, setShowModal] = useState(false); // For modal visibility
 
   const fetchCustomers = async () => {
-    const data = await fetch(`${APIBASE}/customer`);
+    const data = await fetch(`/api/customer`);
     const c = await data.json();
     setCustomers(c);
   };
@@ -59,7 +59,7 @@ export default function CustomerManagement() {
   
     const method = editMode ? "PUT" : "POST";
     try {
-      const response = await fetch(`${APIBASE}/customer`, {
+      const response = await fetch(`/api/customer`, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -102,7 +102,7 @@ export default function CustomerManagement() {
   const deleteById = (id) => async () => {
     if (!confirm("Are you sure?")) return;
 
-    await fetch(`${APIBASE}/customer/${id}`, {
+    await fetch(`/api/customer/${id}`, {
       method: "DELETE",
     });
     alert("Customer deleted successfully");

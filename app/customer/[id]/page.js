@@ -12,7 +12,7 @@ export default function CustomerDetail({ params }) {
   useEffect(() => {
     const fetchCustomer = async () => {
       try {
-        const response = await fetch(`${APIBASE}/customer/${params.id}`);
+        const response = await fetch(`/api/customer/${params.id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch customer data");
         }
